@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// const removeFromArray = function(array, ...items) {
+//     console.log("argument length: " + items.length)
+//     let itemsArray = items;
+//     console.log("arugments as array: " + itemsArray);
+//     let indexMatch;
+//     let removalNum;
+
+//     for(i = 0; i < ; i++){
+//         console.log("outer loop" + i)
+//         //console.log(array[i])
+//         //console.log(itemsArray)
+//         //let firstMatch = (findMatch(array[i], itemsArray));
+//         //console.log("first match: " + firstMatch);
+//         if (findMatch(array[i], itemsArray) === 1) {
+//             indexMatch = i;
+//             removalNum = 1;
+//             array.splice(indexMatch, removalNum);
+//             console.log(array)
+//         }
+//     }
+    
+//     return array;
+
+// }
+
+// // for each of the array items
+// // check against each of the arguments for a match
+// // if matched, splice and remove at that index
+// // update the length of the array
+// // continue to the next array items
+
+// function findMatch(arrayItem, argumentItems) {
+//     console.log(arrayItem)
+//     console.log(argumentItems);
+//     let argLength = argumentItems.length;
+//     console.log(argLength)
+//     let match = 1;
+//     for (j = 0; j < 4; j++){
+//     console.log("inner loop number: "+ arrayItem)
+//     //console.log(arrayItem === argumentItems[i])
+//         if (arrayItem === argumentItems[j]){
+//             console.log("matched item: " + arrayItem);
+//             match = 1;
+//             break
+//         }
+//         match =  0;
+//     }
+//     return match;
+// }
+// // removeFromArray([1, 2, 3, 4], 3)
+
+//New code
+
+
+
+const removeFromArray = function(array, ...items) {
+    let indexLog = [];
+    let indexHolder = [];
+    let doesHaveMatch = null;
+    for (i = 0; i < items.length; i++){
+        console.log("running outer loop" + (i+1));
+        console.log("indexlog is now: " + indexLog);
+        indexHolder = hasMatch(array, items[i]);
+        console.log("indexHolder is now: " + indexHolder);
+        console.log(indexHolder);
+        if (doesHaveMatch != indexHolder){
+            indexLog.push(indexHolder);
+            console.log("pushing to indexLog" + indexLog);
+            
+        }
+    }
+     console.log("outer " + indexLog);
+     console.log(indexLog.length);
+     if (indexLog.length < 1){
+        console.log(array);
+     }
+     console.log(createArraySansMatches(array, indexLog));
+     return 
+    
+};
+
+function hasMatch(compareArray, item) {
+    console.log("running inner")
+    console.log(compareArray);
+    console.log(item);
+    let spliceIndex = [];
+    for(j = 0; j < compareArray.length; j++){
+        console.log("running has match " + (j + 1));
+        if (item === compareArray[j]){
+            console.log("matched: " + compareArray[j]);
+            spliceIndex.push(j);
+            console.log(spliceIndex);
+        }   
+    }
+    if (spliceIndex.length < 1) {
+            return null;
+        }
+    console.log("inner " + spliceIndex);
+    return spliceIndex; 
+}
+
+function spliceArray(initialArray, splicerArray){
+    console.log(splicerArray);
+    console.log("pre slice initial array is: "  + initialArray);
+    for(k = 0; k < splicerArray.length; ){
+        console.log("splicer array is: " + splicerArray)
+        console.log("about to splice from: " + splicerArray[k])
+        initialArray.splice(splicerArray[k],1);
+        console.log("just spliced: " + initialArray);
+        //splicerArray.shift();
+        //splicerArray.forEach(subtract1);
+    }
+    console.log(initialArray)
+    return initialArray
+}
+
+function createArraySansMatches(initArr, spliceArr){
+    let finalArray = [];
+    for (l = 0; l < spliceArr.length; l++){
+        let index = spliceArr[l];
+        initArr[index] = null;
+    }
+    for (m = 0; m < initArr.length; m++){
+        if (initArr[m] != null){
+            finalArray.push(initArr[m]);
+        }
+    }
+    return finalArray;
+    
+}
+
+function subtract1(num, index, arr){
+    arr[index] = num - 1;
+}
+
+console.log("test1")
+removeFromArray([1, 2, 3, 4], 3)
+console.log("test2")
+removeFromArray([1, 2, 3, 4], 3, 2)
+console.log("test3")
+removeFromArray([1, 2, 3, 4], 7, "tacos")
+console.log("test4")
+removeFromArray([1, 2, 3, 4], 7, 2)
+console.log("test5")
+removeFromArray([1, 2, 3, 4], 1, 2, 3, 4)
+
+    </script>
+</body>
+</html>
