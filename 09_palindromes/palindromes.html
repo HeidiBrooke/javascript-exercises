@@ -1,9 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
 const palindromes = function (string) {
     let noPunctuationString = string.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
     noPunctuationString = noPunctuationString.replace(/\s/g, "");
     noPunctuationString = noPunctuationString.toLowerCase();
+    console.log(noPunctuationString);
     let reversedString = reverseString(noPunctuationString);
+    console.log(reversedString);
     if (noPunctuationString === reversedString){
+        console.log(noPunctuationString);
+        console.log(reversedString);
         return true;
     }
     return false;
@@ -21,5 +38,8 @@ function reverseString(string){
 
 }
 
-// Do not edit below this line
-module.exports = palindromes;
+
+palindromes('A car, a man, a maraca.')
+    </script>
+</body>
+</html>
